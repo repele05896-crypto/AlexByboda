@@ -44,13 +44,13 @@ def PlayWrapper(command):
     async def wrapper(client, message):
         if await is_maintenance() is False and message.from_user.id not in SUDOERS:
             return await message.reply_text(
-                "Bot is under maintenance. Please wait for some time..."
+                "🧚 عذراً، البوت في وضع الصيانة حالياً لإجراء التحديثات اللازمة. يرجى المحاولة في وقت لاحق."
             )
         if PRIVATE_BOT_MODE == str(True) and not await is_served_private_chat(
             message.chat.id
         ):
             await message.reply_text(
-                "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
+                "🥀 عذراً، هذا البوت مخصص للاستخدام الخاص فقط. يرجى التواصل مع مطور البوت لتفعيل الخدمة في مجموعتك."
             )
             return await app.leave_chat(message.chat.id)
         if await is_commanddelete_on(message.chat.id):
@@ -90,7 +90,7 @@ def PlayWrapper(command):
                 [
                     [
                         InlineKeyboardButton(
-                            text="How to Fix this? ",
+                            text="كيفية حل هذه المشكلة",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
