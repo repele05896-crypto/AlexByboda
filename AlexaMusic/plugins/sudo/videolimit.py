@@ -21,6 +21,12 @@ from AlexaMusic.utils.decorators.language import language
 
 VIDEOLIMIT_COMMAND = get_command("VIDEOLIMIT_COMMAND")
 
+# إضافة الأمر العربي "حد الفيديو"
+if isinstance(VIDEOLIMIT_COMMAND, str):
+    VIDEOLIMIT_COMMAND = [VIDEOLIMIT_COMMAND, "حد الفيديو"]
+elif isinstance(VIDEOLIMIT_COMMAND, list):
+    VIDEOLIMIT_COMMAND.append("حد الفيديو")
+
 
 @app.on_message(filters.command(VIDEOLIMIT_COMMAND) & SUDOERS)
 @language
@@ -30,10 +36,13 @@ async def set_video_limit_kid(client, message: Message, _):
         return await message.reply_text(usage)
     message.chat.id
     state = message.text.split(None, 1)[1].strip()
-    if state.lower() == "disable":
+    
+    # تم التعديل ليقبل "تعطيل" أو "disable"
+    if state.lower() in ["disable", "تعطيل"]:
         limit = 0
         await set_video_limit(limit)
         return await message.reply_text(_["vid_4"])
+    
     if state.isnumeric():
         limit = int(state)
         await set_video_limit(limit)
