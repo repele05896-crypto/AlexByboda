@@ -17,9 +17,12 @@ from pyrogram import filters
 def ids(_, message):
     if reply := message.reply_to_message:
         message.reply_text(
-            f"**ʏᴏᴜʀ ɪᴅ**: `{message.from_user.id}`\n**{reply.from_user.first_name}'s ɪᴅ**: `{reply.from_user.id}`\n**ᴄʜᴀᴛ ɪᴅ**: `{message.chat.id}`"
+            f"★ **آيـديـك :** `{message.from_user.id}`\n"
+            f"★ **آيـدي {reply.from_user.first_name} :** `{reply.from_user.id}`\n"
+            f"★ **آيـدي الـمـجـمـوعـة :** `{message.chat.id}`"
         )
     else:
         message.reply(
-            f"**ʏᴏᴜʀ ɪᴅ**: `{message.from_user.id}`\n**ᴄʜᴀᴛ ɪᴅ**: `{message.chat.id}`"
+            f"★ **آيـديـك :** `{message.from_user.id}`\n"
+            f"★ **آيـدي الـمـجـمـوعـة :** `{message.chat.id}`"
         )
