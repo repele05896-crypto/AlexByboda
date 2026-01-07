@@ -18,6 +18,9 @@ from pyrogram import filters
 
 load_dotenv()
 
+# هذا السطر هو المسؤول عن تشغيل الأوامر بدون سلاش ("") وبالسلاش (/)
+COMMAND_PREFIXES = ["/", "!", ".", ""]
+
 API_ID = int(getenv("API_ID", ""))
 API_HASH = getenv("API_HASH")
 
