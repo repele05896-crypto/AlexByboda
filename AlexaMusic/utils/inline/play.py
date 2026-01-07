@@ -9,10 +9,36 @@ This program is free software: you can redistribute it and can modify
 as you want or you can collabe if you have new ideas.
 """
 
-
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import SUPPORT_GROUP, SUPPORT_CHANNEL
 import math
+
+# --- استيراد الدوال من ملف التنسيق ---
+# تأكد أن اسم المجلد والملف صحيحين في مشروعك
+# غالباً يكون المسار: AlexaMusic.utils.formatters
+try:
+    from AlexaMusic.utils.formatters import seconds_to_min
+except ImportError:
+    # دالة احتياطية في حال فشل الاستيراد لتجنب توقف البوت
+    def seconds_to_min(seconds):
+        if seconds is not None:
+            seconds = int(seconds)
+            d, h, m, s = (
+                seconds // (3600 * 24),
+                seconds // 3600 % 24,
+                seconds % 3600 // 60,
+                seconds % 3600 % 60,
+            )
+            if d > 0:
+                return "{:02d}:{:02d}:{:02d}:{:02d}".format(d, h, m, s)
+            elif h > 0:
+                return "{:02d}:{:02d}:{:02d}".format(h, m, s)
+            elif m > 0:
+                return "{:02d}:{:02d}".format(m, s)
+            elif s > 0:
+                return "00:{:02d}".format(s)
+        return "-"
+
 
 ## Helper Function to Calculate Bar
 def get_progress_bar(played, dur):
