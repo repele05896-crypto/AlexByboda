@@ -20,28 +20,48 @@ async def bot_added(_, message):
         for members in message.new_chat_members:
             if members.id == app.id:
                 count = await app.get_chat_members_count(chat.id)
-                username = message.chat.username or "Private Chat"
+                username = message.chat.username or "مـجـمـوعـة خـاصـة"
                 msg = (
-                    f"<b>Bot added in</b> {message.chat.title}\n\n"
-                    f"<b>Name:</b> {message.chat.title}\n"
-                    f"<b>Id:</b> {message.chat.id}\n"
-                    f"<b>Username:</b> @{username}\n"
-                    f"<b>Added By:</b> {message.from_user.mention}"
+                    f"☔ **تـم إضـافـة الـبـوت لـمـجـمـوعـة جـديـدة**\n\n"
+                    f"★ **الـمـجـمـوعـة:** {message.chat.title}\n"
+                    f"★ **الآيـدي:** `{message.chat.id}`\n"
+                    f"★ **الـيـوزر:** @{username}\n"
+                    f"★ **أضـيـف بـواسـطـة:** {message.from_user.mention}"
                 )
-                await app.send_message(
-                    LOG_GROUP_ID,
-                    text=msg,
-                    reply_markup=InlineKeyboardMarkup(
-                        [
+                
+                # التحقق مما إذا كان للمستخدم صورة بروفايل
+                if message.from_user.photo:
+                    await app.send_photo(
+                        LOG_GROUP_ID,
+                        photo=message.from_user.photo.big_file_id,
+                        caption=msg,
+                        reply_markup=InlineKeyboardMarkup(
                             [
-                                InlineKeyboardButton(
-                                    text=f"Added by: {message.from_user.first_name}",
-                                    user_id=message.from_user.id,
-                                )
+                                [
+                                    InlineKeyboardButton(
+                                        text=f"☔ بـواسـطـة: {message.from_user.first_name}",
+                                        user_id=message.from_user.id,
+                                    )
+                                ]
                             ]
-                        ]
-                    ),
-                )
+                        ),
+                    )
+                else:
+                    await app.send_message(
+                        LOG_GROUP_ID,
+                        text=msg,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton(
+                                        text=f"☔ بـواسـطـة: {message.from_user.first_name}",
+                                        user_id=message.from_user.id,
+                                    )
+                                ]
+                            ]
+                        ),
+                    )
+                
                 if message.chat.username:
                     await userbot.join_chat(message.chat.username)
     except Exception:
@@ -57,35 +77,53 @@ async def bot_kicked(_, message: Message):
         left_chat_member = message.left_chat_member
         if left_chat_member and left_chat_member.id == app.id:
             remove_by = (
-                message.from_user.mention if message.from_user else "Unknown User"
+                message.from_user.mention if message.from_user else "مـسـتـخـدم مـجـهـول"
             )
             title = message.chat.title
             username = (
-                f"@{message.chat.username}" if message.chat.username else "Private Chat"
+                f"@{message.chat.username}" if message.chat.username else "مـجـمـوعـة خـاصـة"
             )
             chat_id = message.chat.id
             left = (
-                f"Bot was Removed in {title}\n"
-                f"<b>Name</b>: {title}\n"
-                f"<b>Id</b>: {chat_id}\n"
-                f"<b>Username</b>: {username}\n"
-                f"<b>Removed By</b>: {remove_by}"
+                f"☔ **تـم طـرد الـبـوت مـن مـجـمـوعـة**\n\n"
+                f"★ **الـمـجـمـوعـة:** {title}\n"
+                f"★ **الآيـدي:** `{chat_id}`\n"
+                f"★ **الـيـوزر:** {username}\n"
+                f"★ **حـذف بـواسـطـة:** {remove_by}"
             )
 
-            await app.send_message(
-                LOG_GROUP_ID,
-                text=left,
-                reply_markup=InlineKeyboardMarkup(
-                    [
+            # التحقق مما إذا كان للمستخدم صورة بروفايل
+            if message.from_user.photo:
+                await app.send_photo(
+                    LOG_GROUP_ID,
+                    photo=message.from_user.photo.big_file_id,
+                    caption=left,
+                    reply_markup=InlineKeyboardMarkup(
                         [
-                            InlineKeyboardButton(
-                                text=f"Removed By: {message.from_user.first_name}",
-                                user_id=message.from_user.id,
-                            )
+                            [
+                                InlineKeyboardButton(
+                                    text=f"☔ حـذف بـواسـطـة: {message.from_user.first_name}",
+                                    user_id=message.from_user.id,
+                                )
+                            ]
                         ]
-                    ]
-                ),
-            )
+                    ),
+                )
+            else:
+                await app.send_message(
+                    LOG_GROUP_ID,
+                    text=left,
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text=f"☔ حـذف بـواسـطـة: {message.from_user.first_name}",
+                                    user_id=message.from_user.id,
+                                )
+                            ]
+                        ]
+                    ),
+                )
             await delete_served_chat(chat_id)
             await userbot.leave_chat(chat_id)
     except Exception as e:
