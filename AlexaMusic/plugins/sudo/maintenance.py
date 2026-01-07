@@ -41,19 +41,23 @@ async def maintenance(client, message: Message):
     message.chat.id
     state = message.text.split(None, 1)[1].strip()
     state = state.lower()
-    if state == "enable":
+    
+    # تم التعديل ليقبل "enable" أو "تفعيل"
+    if state in ["enable", "تفعيل"]:
         if await is_maintenance() is False:
-            await message.reply_text("ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ ᴍᴏᴅᴇ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
+            await message.reply_text("وضـع الـصـيـانـة مـفـعـل بـالـفـعـل .")
         else:
             await maintenance_on()
             await message.reply_text(_["maint_2"])
-    elif state == "disable":
+            
+    # تم التعديل ليقبل "disable" أو "تعطيل"
+    elif state in ["disable", "تعطيل"]:
         if await is_maintenance() is False:
             await maintenance_off()
             await message.reply_text(_["maint_3"])
         else:
             await message.reply_text(
-                "ɪ ᴅᴏɴ'ᴛ ʀᴇᴍᴇᴍʙᴇʀ ᴛʜᴀᴛ ʏᴏᴜ ᴇɴᴀʙʟᴇᴅ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ ᴍᴏᴅᴇ."
+                "لا أتـذكـر أنـك قـمـت بـتـفـعـيـل وضـع الـصـيـانـة ."
             )
     else:
         await message.reply_text(usage)
