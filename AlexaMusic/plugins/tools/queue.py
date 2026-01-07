@@ -55,20 +55,20 @@ async def ping_com(client, message: Message, _):
     if message.command[0][0] == "c":
         chat_id = await get_cmode(message.chat.id)
         if chat_id is None:
-            return await message.reply_text(_["setting_12"])
+            return await message.reply_text("🍒 تـأكـد مـن ربـط الـقـنـاة بـالـمـجـمـوعـة أولاً.")
         try:
             await app.get_chat(chat_id)
         except Exception:
-            return await message.reply_text(_["cplay_4"])
+            return await message.reply_text("🍒 فـشـل فـي الـحـصـول عـلـى مـعـلـومـات الـقـنـاة، تـأكـد أن الـبـوت مـشـرف هـنـاك.")
         cplay = True
     else:
         chat_id = message.chat.id
         cplay = False
     if not await is_active_chat(chat_id):
-        return await message.reply_text(_["general_6"])
+        return await message.reply_text("🍒 مـفـيـش مـكـالـمـة صـوتـيـة شـغـالـة حـالـيـاً فـي الـجـروب ده.")
     got = db.get(chat_id)
     if not got:
-        return await message.reply_text(_["queue_2"])
+        return await message.reply_text("🍒 قـائـمـة الانـتـظـار فـارغـة، مـفـيـش أغـانـي شـغـالـة.")
     file = got[0]["file"]
     videoid = got[0]["vidid"]
     user = got[0]["by"]
@@ -93,16 +93,16 @@ async def ping_com(client, message: Message, _):
         else:
             IMAGE = get_image(videoid)
     send = (
-        "**⌛️ᴅᴜʀᴀᴛɪᴏɴ:** ᴜɴᴋɴᴏᴡɴ ᴅᴜʀᴀᴛɪᴏɴ sᴛʀᴇᴀᴍ\n\nᴄʟɪᴄᴋ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴡʜᴏʟᴇ ǫᴜᴇᴜᴇᴅ ʟɪsᴛ."
+        "**🤍 الـمـدة:** بـث مـبـاشـر (غـيـر مـحـدد)\n\nاضـغـط عـلـى الـزر بـالأسـفـل لـعـرض الـقـائـمـة كـامـلـة."
         if DUR == "Unknown"
-        else "\nᴄʟɪᴄᴋ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ᴡʜᴏʟᴇ ǫᴜᴇᴜᴇᴅ ʟɪsᴛ."
+        else "\nاضـغـط عـلـى الـزر بـالأسـفـل لـعـرض الـقـائـمـة كـامـلـة."
     )
-    cap = f"""**{config.MUSIC_BOT_NAME} ᴩʟᴀʏᴇʀ**
+    cap = f"""**{config.MUSIC_BOT_NAME} 🧚**
 
-📌 **ᴛɪᴛʟᴇ:** {title}
+☔ **الاسـم:** {title}
 
-🍒 **ᴛʏᴩᴇ:** {typo}
-💖 **ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ:** {user}
+🧚 **الـنـوع:** {typo}
+💕 **طـلـب بـواسـطـة:** {user}
 {send}"""
     upl = (
         queue_markup(_, DUR, "c" if cplay else "g", videoid)
@@ -163,36 +163,36 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
     except Exception:
         return
     if not await is_active_chat(chat_id):
-        return await CallbackQuery.answer(_["general_6"], show_alert=True)
+        return await CallbackQuery.answer("🍒 مـفـيـش مـكـالـمـة صـوتـيـة شـغـالـة حـالـيـاً.", show_alert=True)
     got = db.get(chat_id)
     if not got:
-        return await CallbackQuery.answer(_["queue_2"], show_alert=True)
+        return await CallbackQuery.answer("🍒 قـائـمـة الانـتـظـار فـارغـة.", show_alert=True)
     if len(got) == 1:
-        return await CallbackQuery.answer(_["queue_5"], show_alert=True)
+        return await CallbackQuery.answer("🍒 مـفـيـش غـيـر الأغـنـيـة دي بـس الـلـي شـغـالـة، مـفـيـش حـاجـة فـي الانـتـظـار.", show_alert=True)
     await CallbackQuery.answer()
     basic[videoid] = False
     buttons = queue_back_markup(_, what)
     med = InputMediaPhoto(
-        media="https://telegra.ph//file/6f7d35131f69951c74ee5.jpg",
-        caption=_["queue_1"],
+        media="https://files.catbox.moe/b6533n.jpg",
+        caption="🤍 دي قـائـمـة الأغـانـي الـلـي فـي الانـتـظـار يـا غـالـي.",
     )
     await CallbackQuery.edit_message_media(media=med)
     msg = ""
     for j, x in enumerate(got, start=1):
         if j == 1:
-            msg += f'ᴄᴜʀʀᴇɴᴛʟʏ ᴩʟᴀʏɪɴɢ:\n\n📌ᴛɪᴛʟᴇ: {x["title"]}\nᴅᴜʀᴀᴛɪᴏɴ: {x["dur"]}\nʙʏ: {x["by"]}\n\n'
+            msg += f'🧚 **مـشـغـل الآن:**\n\n☔ الاسـم: {x["title"]}\n🤍 الـمـدة: {x["dur"]}\n💕 بـواسـطـة: {x["by"]}\n\n'
         elif j == 2:
-            msg += f'ǫᴜᴇᴜᴇᴅ:\n\n📌ᴛɪᴛʟᴇ: {x["title"]}\nᴅᴜʀᴀᴛɪᴏɴ: {x["dur"]}\nʙʏ: {x["by"]}\n\n'
+            msg += f'🧚 **فـي الانـتـظـار:**\n\n☔ الاسـم: {x["title"]}\n🤍 الـمـدة: {x["dur"]}\n💕 بـواسـطـة: {x["by"]}\n\n'
         else:
-            msg += f'📌ᴛɪᴛʟᴇ: {x["title"]}\nᴅᴜʀᴀᴛɪᴏɴ: {x["dur"]}\nʙʏ: {x["by"]}\n\n'
+            msg += f'☔ الاسـم: {x["title"]}\n🤍 الـمـدة: {x["dur"]}\n💕 بـواسـطـة: {x["by"]}\n\n'
     if "Queued" in msg:
         if len(msg) < 700:
             await asyncio.sleep(1)
             return await CallbackQuery.edit_message_text(msg, reply_markup=buttons)
-        if "📌" in msg:
-            msg = msg.replace("📌", "")
+        if "☔" in msg:
+            msg = msg.replace("☔", "")
         link = await Alexabin(msg)
-        med = InputMediaPhoto(media=link, caption=_["queue_3"].format(link))
+        med = InputMediaPhoto(media=link, caption=f"🤍 الـقـائـمـة طـويـلـة جـداً، تـقـدر تـشـوفـهـا مـن هـنـا:\n{link}")
         await CallbackQuery.edit_message_media(media=med, reply_markup=buttons)
     else:
         await asyncio.sleep(1)
@@ -209,11 +209,11 @@ async def queue_back(client, CallbackQuery: CallbackQuery, _):
     except Exception:
         return
     if not await is_active_chat(chat_id):
-        return await CallbackQuery.answer(_["general_6"], show_alert=True)
+        return await CallbackQuery.answer("☔ مـفـيـش مـكـالـمـة صـوتـيـة شـغـالـة حـالـيـاً.", show_alert=True)
     got = db.get(chat_id)
     if not got:
-        return await CallbackQuery.answer(_["queue_2"], show_alert=True)
-    await CallbackQuery.answer(_["set_cb_8"], show_alert=True)
+        return await CallbackQuery.answer("🤍 الـقـائـمـة فـارغـة.", show_alert=True)
+    await CallbackQuery.answer("🧚 لـحـظـة واحـدة، راجـعـيـن لـلـمـشـغـل...", show_alert=True)
     file = got[0]["file"]
     videoid = got[0]["vidid"]
     user = got[0]["by"]
@@ -238,16 +238,16 @@ async def queue_back(client, CallbackQuery: CallbackQuery, _):
         else:
             IMAGE = get_image(videoid)
     send = (
-        "**⌛️ᴅᴜʀᴀᴛɪᴏɴ:** ᴜɴᴋɴᴏᴡɴ ᴅᴜʀᴀᴛɪᴏɴ sᴛʀᴇᴀᴍ\n\nᴄʟɪᴄᴋ ᴏɴ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴡʜᴏʟᴇ ǫᴜᴇᴜᴇᴅ ʟɪsᴛ."
+        "**🤍 الـمـدة:** بـث مـبـاشـر (غـيـر مـحـدد)\n\nاضـغـط عـلـى الـزر بـالأسـفـل لـعـرض الـقـائـمـة كـامـلـة."
         if DUR == "Unknown"
-        else "\nᴄʟɪᴄᴋ ᴏɴ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴡʜᴏʟᴇ ǫᴜᴇᴜᴇᴅ ʟɪsᴛ."
+        else "\nاضـغـط عـلـى الـزر بـالأسـفـل لـعـرض الـقـائـمـة كـامـلـة."
     )
-    cap = f"""**{config.MUSIC_BOT_NAME} ᴩʟᴀʏᴇʀ**
+    cap = f"""**{config.MUSIC_BOT_NAME} 🧚**
 
-📌 **ᴛɪᴛʟᴇ:** {title}
+☔ **الاسـم:** {title}
 
-🍒 **ᴛʏᴩᴇ:** {typo}
-💖 **ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ:** {user}
+🧚 **الـنـوع:** {typo}
+💕 **طـلـب بـواسـطـة:** {user}
 {send}"""
     upl = (
         queue_markup(_, DUR, cplay, videoid)
