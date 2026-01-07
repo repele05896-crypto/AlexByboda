@@ -126,7 +126,8 @@ async def gbanned_list(client, message: Message, _):
     if counts == 0:
         return await message.reply_text(_["gban_10"])
     mystic = await message.reply_text(_["gban_11"])
-    msg = "ɢʙᴀɴɴᴇᴅ ᴜsᴇʀ:\n\n"
+    # تم تعريب النص التالي مع الكشيدة
+    msg = "☔ قـائـمـة الـمـحـظـوريـن عـام :\n\n"
     count = 0
     users = await get_banned_users()
     for user_id in users:
@@ -136,7 +137,8 @@ async def gbanned_list(client, message: Message, _):
             user = user.mention or user.first_name
             msg += f"{count}➤ {user}\n"
         except Exception:
-            msg += f"{count}➤ [Unfetched User]{user_id}\n"
+            # تم تعريب النص التالي مع الكشيدة
+            msg += f"{count}➤ [مـسـتـخـدم غـيـر مـعـروف] {user_id}\n"
             continue
     if count == 0:
         return await mystic.edit_text(_["gban_10"])
