@@ -47,11 +47,11 @@ async def stream_command(
             await Alexa.stream_call(url)
         except NoActiveGroupCall:
             await mystic.edit_text(
-                "ᴛʜᴇʀᴇ's ᴀɴ ɪssᴜᴇ ᴡɪᴛʜ ᴛʜᴇ ʙᴏᴛ. ᴘʟᴇᴀsᴇ ʀᴇᴘᴏʀᴛ ɪᴛ ᴛᴏ ᴍʏ ᴏᴡɴᴇʀ ᴀɴᴅ ᴀsᴋ ᴛʜᴇᴍ ᴛᴏ ᴄʜᴇᴄᴋ ʟᴏɢɢᴇʀ ɢʀᴏᴜᴘ."
+                "هـنـاك مـشـكـلـة فـي الـبـوت. يـرجـى إبـلاغ الـمـطـور وطـلـب الـتـحـقـق مـن مـجـمـوعـة الـسـجـل."
             )
             return await app.send_message(
                 config.LOG_GROUP_ID,
-                "ᴘʟᴇᴀsᴇ ᴛᴜʀɴ ᴏɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.. ʙᴏᴛ ɪs ɴᴏᴛ ᴀʙʟᴇ ᴛᴏ sᴛʀᴇᴀᴍ ᴜʀʟs..",
+                "يـرجـى تـشـغـيـل الـمـحـادثـة الـصـوتـيـة.. الـبـوت غـيـر قـادر عـلـى تـشـغـيـل الـروابـط..",
             )
         except Exception as e:
             return await mystic.edit_text(_["general_3"].format(type(e).__name__))
