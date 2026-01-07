@@ -121,7 +121,8 @@ async def stream(
                 run = await app.send_photo(
                     original_chat_id,
                     photo=img,
-                    caption=_["stream_1"].format(
+                    # تمت إضافة الإيموجي هنا
+                    caption="🧚 " + _["stream_1"].format(
                         title[:27],
                         f"https://t.me/{app.username}?start=info_{vidid}",
                         duration_min,
@@ -141,7 +142,8 @@ async def stream(
         return await app.send_photo(
             original_chat_id,
             photo=carbon,
-            caption=_["playlist_18"].format(position, link),
+            # تمت إضافة الإيموجي هنا
+            caption="🧚 " + _["playlist_18"].format(position, link),
             reply_markup=upl,
         )
     elif streamtype == "youtube":
@@ -176,7 +178,8 @@ async def stream(
             run = await app.send_photo(
                 original_chat_id,
                 photo=qimg,
-                caption=_["queue_4"].format(
+                # تمت إضافة الإيموجي هنا
+                caption="🧚 " + _["queue_4"].format(
                     position, title[:27], duration_min, user_name
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
@@ -206,7 +209,8 @@ async def stream(
                 run = await app.send_photo(
                     original_chat_id,
                     photo=img,
-                    caption=_["stream_1"].format(
+                    # تمت إضافة الإيموجي هنا
+                    caption="🧚 " + _["stream_1"].format(
                         title[:27],
                         f"https://t.me/{app.username}?start=info_{vidid}",
                         duration_min,
@@ -237,7 +241,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1
             await app.send_message(
                 original_chat_id,
-                _["queue_4"].format(position, title[:30], duration_min, user_name),
+                "🧚 " + _["queue_4"].format(position, title[:30], duration_min, user_name),
             )
         else:
             if not forceplay:
@@ -259,7 +263,8 @@ async def stream(
             run = await app.send_photo(
                 original_chat_id,
                 photo=config.SOUNCLOUD_IMG_URL,
-                caption=_["stream_3"].format(title, duration_min, user_name),
+                # تمت إضافة الإيموجي هنا
+                caption="🧚 " + _["stream_3"].format(title, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
@@ -285,7 +290,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1
             await app.send_message(
                 original_chat_id,
-                _["queue_4"].format(position, title[:30], duration_min, user_name),
+                "🧚 " + _["queue_4"].format(position, title[:30], duration_min, user_name),
             )
         else:
             if not forceplay:
@@ -309,7 +314,8 @@ async def stream(
             run = await app.send_photo(
                 original_chat_id,
                 photo=config.TELEGRAM_VIDEO_URL if video else config.TELEGRAM_AUDIO_URL,
-                caption=_["stream_4"].format(title, link, duration_min, user_name),
+                # تمت إضافة الإيموجي هنا
+                caption="🧚 " + _["stream_4"].format(title, link, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
@@ -336,7 +342,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1
             await app.send_message(
                 original_chat_id,
-                _["queue_4"].format(position, title[:30], duration_min, user_name),
+                "🧚 " + _["queue_4"].format(position, title[:30], duration_min, user_name),
             )
         else:
             if not forceplay:
@@ -369,7 +375,8 @@ async def stream(
             run = await app.send_photo(
                 original_chat_id,
                 photo=img,
-                caption=_["stream_1"].format(
+                # تمت إضافة الإيموجي هنا
+                caption="🧚 " + _["stream_1"].format(
                     title[:27],
                     f"https://t.me/{app.username}?start=info_{vidid}",
                     duration_min,
@@ -381,8 +388,10 @@ async def stream(
             db[chat_id][0]["markup"] = "tg"
     elif streamtype == "index":
         link = result
-        title = "Index or M3u8 Link"
-        duration_min = "URL stream"
+        # تم تعريب العنوان
+        title = "رابط خارجي أو M3u8"
+        # تم تعريب المدة
+        duration_min = "رابط بث"
         if await is_active_chat(chat_id):
             await put_queue_index(
                 chat_id,
@@ -396,7 +405,7 @@ async def stream(
             )
             position = len(db.get(chat_id)) - 1
             await mystic.edit_text(
-                _["queue_4"].format(position, title[:30], duration_min, user_name)
+                "🧚 " + _["queue_4"].format(position, title[:30], duration_min, user_name)
             )
         else:
             if not forceplay:
@@ -422,7 +431,8 @@ async def stream(
             run = await app.send_photo(
                 original_chat_id,
                 photo=config.STREAM_IMG_URL,
-                caption=_["stream_2"].format(user_name),
+                # تمت إضافة الإيموجي هنا
+                caption="🧚 " + _["stream_2"].format(user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
