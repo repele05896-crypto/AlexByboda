@@ -22,6 +22,12 @@ from AlexaMusic.utils.decorators.language import language
 # Commands
 VIDEOMODE_COMMAND = get_command("VIDEOMODE_COMMAND")
 
+# إضافة الأمر العربي "وضع الفيديو"
+if isinstance(VIDEOMODE_COMMAND, str):
+    VIDEOMODE_COMMAND = [VIDEOMODE_COMMAND, "وضع الفيديو"]
+elif isinstance(VIDEOMODE_COMMAND, list):
+    VIDEOMODE_COMMAND.append("وضع الفيديو")
+
 
 @app.on_message(filters.command(VIDEOMODE_COMMAND) & SUDOERS)
 @language
@@ -29,13 +35,19 @@ async def videoloaymode(client, message: Message, _):
     usage = _["vidmode_1"]
     if len(message.command) != 2:
         return await message.reply_text(usage)
+    
     state = message.text.split(None, 1)[1].strip()
     state = state.lower()
-    if state == "download":
+    
+    # تم التعديل ليقبل "download" أو "تحميل" أو "تنزيل"
+    if state in ["download", "تحميل", "تنزيل"]:
         await add_on(config.YTDOWNLOADER)
         await message.reply_text(_["vidmode_2"])
-    elif state == "m3u8":
+    
+    # تم التعديل ليقبل "m3u8" أو "بث"
+    elif state in ["m3u8", "بث"]:
         await add_off(config.YTDOWNLOADER)
         await message.reply_text(_["vidmode_3"])
+    
     else:
         await message.reply_text(usage)
