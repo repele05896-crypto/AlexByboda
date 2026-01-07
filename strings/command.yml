@@ -18,12 +18,10 @@ STREAM_COMMAND = ["stream", "cstream", "streamforce", "بث"]
 PLAYLIST_COMMAND = ["playlist", "قائمتي", "القائمة"]
 DELETEPLAYLIST_COMMAND = ["deleteplaylist", "حذف القائمة"]
 
-
 # Tools
 QUEUE_COMMAND = ["queue","cqueue", "player", "cplayer", "playing", "cplaying", "الدور", "القائمة", "مشغل"]
 SONG_COMMAND = ["song", "video", "vsong", "يوتيوب", "بحث", "تحميل"]
 LYRICS_COMMAND = ["lyrics", "كلمات"]
-
 
 # Admin Commands
 AUTH_COMMAND = ["auth", "رفع ادمن"]
@@ -40,17 +38,17 @@ LOOP_COMMAND = ["loop", "cloop", "تكرار"]
 SEEK_COMMAND = ["seek", "cseek", "seekback", "cseekback", "قدم", "رجع"]
 RESTART_COMMAND = ["reboot", "تحديث البوت"]
 
-# Sudo Users Commaands
+# Sudo Users Commands
 
 # Sudo Command
 ADDSUDO_COMMAND = ["addsudo", "رفع مطور"]
 DELSUDO_COMMAND = ["delsudo", "rmsudo", "تنزيل مطور"]
 SUDOUSERS_COMMAND = ["sudolist", "listsudo", "المطورين"]
 
-#Broadcast 
+# Broadcast 
 BROADCAST_COMMAND = ["broadcast", "gcast", "اذاعة"]
 
-#Blacklist chat
+# Blacklist chat
 BLACKLISTCHAT_COMMAND = ["blacklistchat", "blchat", "حظر مجموعة"]
 WHITELISTCHAT_COMMAND = ["whitelistchat", "unblchat", "رفع حظر مجموعة"]
 BLACKLISTEDCHAT_COMMAND = ["blacklistedchat", "المجموعات المحظورة"]
@@ -59,11 +57,11 @@ BLACKLISTEDCHAT_COMMAND = ["blacklistedchat", "المجموعات المحظور
 VIDEOLIMIT_COMMAND = ["set_video_limit", "حد الفيديو"]
 VIDEOMODE_COMMAND = ["videomode", "وضع الفيديو"]
 
-#Mantenance
+# Maintenance
 MAINTENANCE_COMMAND = ["maintenance", "الصيانة"]
 LOGGER_COMMAND = ["logger", "سجلات"]
 
-#Heroku
+# Heroku
 GETLOG_COMMAND = ["get_log", "logs", "getlog", "log", "السجلات"]
 GETVAR_COMMAND = ["get_var", "getvar", "showvar", "جلب متغير"]
 DELVAR_COMMAND = ["del_var", "delvar", "حذف متغير"]
@@ -71,30 +69,29 @@ SETVAR_COMMAND = ["set_var", "setvar", "addvar", "تعيين متغير"]
 USAGE_COMMAND = ["usage", "استهلاك"]
 VARS_COMMAND = ["vars", "config", "المتغيرات"]
 
-
-#Basic Bot Commands
+# Basic Bot Commands
 UPDATE_COMMAND = ["update", "تحديث"]
 REBOOT_COMMAND = ["restart", "اعادة تشغيل"]
 AUTOEND_COMMAND = ["autoend", "انهاء تلقائي"]
 
-#Private Bot Mode
+# Private Bot Mode
 AUTHORIZE_COMMAND = ["authorize", "سماح"]
 UNAUTHORIZE_COMMAND = ["unauthorize", "منع"]
 AUTHORIZED_COMMAND = ["authorized", "المسموح لهم"]
 
-#Block Users Command
+# Block Users Command
 BLOCK_COMMAND = ["block", "بلوك", "حظر"]
 UNBLOCK_COMMAND = ["unblock", "الغاء بلوك", "الغاء حظر"]
 BLOCKED_COMMAND = ["blockedusers", "المحظورين"]
 
-#sPEEDTEST
+# Speedtest
 SPEEDTEST_COMMAND = ["speedtest", "سرعة السيرفر"]
 
-#Voice chat commands
+# Voice chat commands
 ACTIVEVC_COMMAND = ["activevoice", "activevc", "المكالمات النشطة"]
 ACTIVEVIDEO_COMMAND = ["activevideo", "activev", "الفيديو النشط"]
 
-#Gban Commands
+# Gban Commands
 GBAN_COMMAND = ["gban", "حظر عام"]
 UNGBAN_COMMAND = ["ungban", "الغاء حظر عام"]
 GBANNED_COMMAND = ["gbannedusers", "المحظورين عام"]
