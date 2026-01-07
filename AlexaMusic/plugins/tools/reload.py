@@ -43,10 +43,10 @@ async def reload_admin_cache(client, message: Message, _):
         for user in authusers:
             user_id = await alpha_to_int(user)
             adminlist[chat_id].append(user_id)
-        await message.reply_text(_["admin_20"])
+        await message.reply_text("🧚 تـم تـحـديـث قـائـمـة الـمـشـرفـيـن بـنـجـاح.")
     except Exception:
         await message.reply_text(
-            "ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇғʀᴇsʜ ᴀᴅᴍɪɴs ʟɪsᴛ, ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ ᴩʀᴏᴍᴏᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ."
+            "🍒 فـشـل تـحـديـث قـائـمـة الـمـشـرفـيـن، تـأكـد مـن رفـع الـبـوت مـشـرف."
         )
 
 
@@ -54,7 +54,7 @@ async def reload_admin_cache(client, message: Message, _):
 @AdminActual
 async def restartbot(client, message: Message, _):
     mystic = await message.reply_text(
-        f"ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ ʀᴇʙᴏᴏᴛɪɴɢ {MUSIC_BOT_NAME} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ."
+        f"🧚 انـتـظـر قـلـيـلاً.. يـتـم إعـادة تـشـغـيـل {MUSIC_BOT_NAME} لـمـجـمـوعـتـك."
     )
     await asyncio.sleep(1)
     try:
@@ -74,17 +74,8 @@ async def restartbot(client, message: Message, _):
         except Exception:
             pass
     return await mystic.edit_text(
-        "sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇʙᴏᴏᴛᴇᴅ {MUSIC_BOT_NAME} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ, ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ..."
+        f"🧚 تـم إعـادة تـشـغـيـل {MUSIC_BOT_NAME} بـنـجـاح لـمـجـمـوعـتـك، يـمـكـنـك الـتـشـغـيـل الآن..."
     )
-
-
-@app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
-async def close_menu(_, CallbackQuery):
-    try:
-        await CallbackQuery.message.delete()
-        await CallbackQuery.answer()
-    except Exception:
-        return
 
 
 @app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
@@ -103,11 +94,11 @@ async def stop_download(client, CallbackQuery: CallbackQuery, _):
     task = lyrical.get(message_id)
     if not task:
         return await CallbackQuery.answer(
-            "ᴅᴏᴡɴʟᴏᴀᴅ ᴀʟʀᴇᴀᴅʏ ᴄᴏᴍᴩʟᴇᴛᴇᴅ.", show_alert=True
+            "🍒 عـمـلـيـة الـتـحـمـيـل انـتـهـت بـالـفـعـل.", show_alert=True
         )
     if task.done() or task.cancelled():
         return await CallbackQuery.answer(
-            "ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ᴀʟʀᴇᴀᴅʏ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ᴏʀ ᴄᴀɴᴄᴇʟʟᴇᴅ.",
+            "🍒 تـم الانـتـهـاء مـن الـتـحـمـيـل أو إلـغـاؤه مـسـبـقـاً.",
             show_alert=True,
         )
     if not task.done():
@@ -117,12 +108,12 @@ async def stop_download(client, CallbackQuery: CallbackQuery, _):
                 lyrical.pop(message_id)
             except Exception:
                 pass
-            await CallbackQuery.answer("ᴅᴏᴡɴʟᴏᴀᴅɪɢ ᴄᴀɴᴄᴇʟʟᴇᴅ.", show_alert=True)
+            await CallbackQuery.answer("☔ تـم إلـغـاء الـتـحـمـيـل.", show_alert=True)
             return await CallbackQuery.edit_message_text(
-                f"ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ᴩʀᴏᴄᴇss ᴄᴀɴᴄᴇʟʟᴇᴅ ʙʏ {CallbackQuery.from_user.mention}"
+                f"💕 تـم إلـغـاء عـمـلـيـة الـتـحـمـيـل بـواسـطـة {CallbackQuery.from_user.mention}"
             )
         except Exception:
             return await CallbackQuery.answer(
-                "ғᴀɪʟᴇᴅ ᴛᴏ ᴄᴀɴᴄᴇʟ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ...", show_alert=True
+                "🍒 فـشـل فـي إلـغـاء الـتـحـمـيـل...", show_alert=True
             )
-    await CallbackQuery.answer("ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴏɢɴɪᴢᴇ ᴛʜᴇ ᴏɴɢᴏɪɴɢ ᴛᴀsᴋ.", show_alert=True)
+    await CallbackQuery.answer("🍒 لـم يـتـم الـعـثـور عـلـى الـمـهـمـة الـحـالـيـة.", show_alert=True)
