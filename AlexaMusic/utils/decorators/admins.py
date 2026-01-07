@@ -32,7 +32,7 @@ def AdminRightsCheck(mystic):
     async def wrapper(client, message):
         if await is_maintenance() is False and message.from_user.id not in SUDOERS:
             return await message.reply_text(
-                text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_GROUP}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
+                text=f"🧚 عذراً، {app.mention} يمر حالياً بعملية صيانة دورية لضمان أفضل أداء. يرجى زيارة <a href={SUPPORT_GROUP}>مجموعة الدعم الفني</a> لمتابعة آخر التحديثات ومعرفة موعد العودة.",
                 disable_web_page_preview=True,
             )
 
@@ -45,13 +45,13 @@ def AdminRightsCheck(mystic):
             language = await get_lang(message.chat.id)
             _ = get_string(language)
         except Exception:
-            _ = get_string("en")
+            _ = get_string("ar")
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="ʜᴏᴡ ᴛᴏ ғɪx ᴛʜɪs ?",
+                            text="كيفية معالجة هذا الأمر ؟",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
@@ -86,7 +86,7 @@ def AdminActual(mystic):
     async def wrapper(client, message):
         if await is_maintenance() is False and message.from_user.id not in SUDOERS:
             return await message.reply_text(
-                text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_GROUP}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
+                text=f"🧚 عذراً، {app.mention} يمر حالياً بعملية صيانة دورية لضمان أفضل أداء. يرجى زيارة <a href={SUPPORT_GROUP}>مجموعة الدعم الفني</a> لمتابعة آخر التحديثات ومعرفة موعد العودة.",
                 disable_web_page_preview=True,
             )
 
@@ -99,13 +99,13 @@ def AdminActual(mystic):
             language = await get_lang(message.chat.id)
             _ = get_string(language)
         except Exception:
-            _ = get_string("en")
+            _ = get_string("ar")
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="ʜᴏᴡ ᴛᴏ ғɪx ᴛʜɪs ?",
+                            text="كيفية معالجة هذا الأمر ؟",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
@@ -123,7 +123,7 @@ def AdminActual(mystic):
                 ):
                     return await message.reply(_["general_5"])
             except Exception as e:
-                return await message.reply(f"Error: {str(e)}")
+                return await message.reply(f"لقد حدث خطأ غير متوقع أثناء معالجة الطلب: {str(e)}")
         return await mystic(client, message, _)
 
     return wrapper
@@ -136,14 +136,14 @@ def ActualAdminCB(mystic):
             and CallbackQuery.from_user.id not in SUDOERS
         ):
             return await CallbackQuery.answer(
-                f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
+                f"🧚 عذراً، {app.mention} يمر حالياً بعملية صيانة دورية لضمان أفضل أداء. يرجى زيارة مجموعة الدعم الفني لمتابعة آخر التحديثات.",
                 show_alert=True,
             )
         try:
             language = await get_lang(CallbackQuery.message.chat.id)
             _ = get_string(language)
         except Exception:
-            _ = get_string("en")
+            _ = get_string("ar")
         if CallbackQuery.message.chat.type == ChatType.PRIVATE:
             return await mystic(client, CallbackQuery, _)
         is_non_admin = await is_nonadmin_chat(CallbackQuery.message.chat.id)
@@ -167,10 +167,10 @@ def ActualAdminCB(mystic):
                                 )
                     elif a is None:
                         return await CallbackQuery.answer(
-                            "You are not a member of this chat."
+                            "عذراً، يبدو أنك لست عضواً مسجلاً في هذه المجموعة."
                         )
             except Exception as e:
-                return await CallbackQuery.answer(f"Error: {str(e)}")
+                return await CallbackQuery.answer(f"لقد حدث خطأ غير متوقع: {str(e)}")
         return await mystic(client, CallbackQuery, _)
 
     return wrapper
