@@ -49,7 +49,8 @@ async def play_live_stream(client, CallbackQuery, _):
         return await mystic.edit_text(_["play_3"])
     ffplay = True if fplay == "f" else None
     if details["duration_min"]:
-        return await mystic.edit_text("ɪ ᴅᴏɴ'ᴛ ᴛʜɪɴᴋ ᴛʜᴀᴛ ɪᴛ's ᴀ ʟɪᴠᴇ sᴛʀᴇᴀᴍ.")
+        # تم تعريب النص التالي
+        return await mystic.edit_text("🍒 **لا أعـتـقـد أن هـذا بـث مـبـاشـر.**")
     try:
         await stream(
             _,
