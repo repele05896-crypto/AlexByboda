@@ -272,13 +272,15 @@ class Call(PyTgCalls):
             await assistant.play(chat_id, stream, config=ksk)
         except ChatAdminRequired:
             raise AssistantErr(
-                "<b>𝖭𝗈 𝖠𝖼𝗍𝗂𝗏𝖾 𝖵𝗂𝖽𝖾𝗈𝖢𝗁𝖺𝗍 𝖥𝗈𝗎𝗇𝖽 .</b>\n\n𝖳𝗋𝗒 𝖺𝖿𝗍𝖾𝗋 𝗀𝗂𝗏𝗂𝗇𝗀 𝖢𝗁𝖺𝗍 𝖠𝖽𝗆𝗂𝗇 𝗆𝖾."
+                "🥀 <b>عذراً، لم يتم العثور على محادثة مرئية نشطة في هذه المجموعة.</b>\n\nيرجى التأكد من تشغيل المحادثة الصوتية/المرئية أولاً، أو منح البوت صلاحيات المشرف كاملة ثم المحاولة مرة أخرى."
             )
         except NoActiveGroupCall:
-            raise AssistantErr("<b>𝖲𝗍𝖺𝗋𝗍 𝖵𝗂𝖽𝖾𝗈 𝖢𝗁𝖺𝗍.<b>\n\n𝖳𝗁𝖾𝗇 𝖳𝗋𝗒 𝖯𝗅𝖺𝗒𝗂𝗇𝗀 𝖲𝗈𝗇𝗀𝗌.")
+            raise AssistantErr(
+                "🧚 <b>تنبيه هام: يرجى بدء المحادثة الصوتية.</b>\n\nيرجى بدء المحادثة الصوتية في المجموعة أولاً لتتمكن من تشغيل الموسيقى."
+            )
         except TelegramServerError:
             raise AssistantErr(
-                "<b>𝖳𝖾𝗅𝖾𝗀𝗋𝖺𝗆 𝖲𝖾𝗋𝗏𝖾𝗋 𝖤𝗋𝗋𝗈𝗋</b>\n\n𝖳𝖾𝗅𝖾𝗀𝗋𝖺𝗆 𝖨𝗌 𝖧𝖺𝗏𝗂𝗇𝗀 𝖲𝗈𝗆𝖾 𝖨𝗇𝗍𝖾𝗋𝗇𝖺𝗅 𝖯𝗋𝗈𝖻𝗅𝖾𝗆𝗌 , 𝖯𝗅𝖾𝖺𝗌𝖾 𝖳𝗋𝗒 𝖯𝗅𝖺𝗒𝗂𝗇𝗀 𝖠𝗀𝖺𝗂𝗇 𝖮𝗋 𝖱𝖾𝗌𝗍𝖺𝗋𝗍 𝖳𝗁𝖾 𝖵𝗂𝖽𝖾𝗈𝖢𝗁𝖺𝗍 𝖮𝖿 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉."
+                "💕 <b>خطأ من خوادم تيليجرام</b>\n\nنواجه حالياً مشاكل تقنية من خوادم تيليجرام نفسها. يرجى الانتظار قليلاً والمحاولة مرة أخرى، أو قم بإعادة تشغيل المحادثة الصوتية في المجموعة."
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)
@@ -565,7 +567,7 @@ class Call(PyTgCalls):
         return str(round(sum(pings) / len(pings), 3))
 
     async def start(self):
-        LOGGER(__name__).info("Starting PyTgCalls Client\n")
+        LOGGER(__name__).info("🧚 جاري بدء تشغيل عميل المكالمات (PyTgCalls)...\n")
         if config.STRING1:
             await self.one.start()
         if config.STRING2:
@@ -595,64 +597,5 @@ class Call(PyTgCalls):
             if update.stream_type != StreamEnded.Type.AUDIO:
                 return
             await self.change_stream(client, update.chat_id)
-
-        # @self.one.on_update(
-        #     fl.call_participant(
-        #         GroupCallParticipant.Action.JOINED | GroupCallParticipant.Action.LEFT
-        #     )
-        # )
-        # @self.two.on_update(
-        #     fl.call_participant(
-        #         GroupCallParticipant.Action.JOINED | GroupCallParticipant.Action.LEFT
-        #     )
-        # )
-        # @self.three.on_update(
-        #     fl.call_participant(
-        #         GroupCallParticipant.Action.JOINED | GroupCallParticipant.Action.LEFT
-        #     )
-        # )
-        # @self.four.on_update(
-        #     fl.call_participant(
-        #         GroupCallParticipant.Action.JOINED | GroupCallParticipant.Action.LEFT
-        #     )
-        # )
-        # @self.five.on_update(
-        #     fl.call_participant(
-        #         GroupCallParticipant.Action.JOINED | GroupCallParticipant.Action.LEFT
-        #     )
-        # )
-        # async def participants_change_handler(
-        #     client, update: UpdatedGroupCallParticipant
-        # ):
-        #     participant = update
-        #     if participant.action not in (
-        #         GroupCallParticipant.Action.JOINED,
-        #         GroupCallParticipant.Action.LEFT,
-        #     ):
-        #         return
-        #     chat_id = update.chat_id
-        #     users = counter.get(chat_id)
-        #     if not users:
-        #         try:
-        #             got = len(await client.get_participants(chat_id))
-        #         except Exception:
-        #             return
-        #         counter[chat_id] = got
-        #         if got == 1:
-        #             autoend[chat_id] = datetime.now() + timedelta(minutes=AUTO_END_TIME)
-        #             return
-        #         autoend[chat_id] = {}
-        #     else:
-        #         final = (
-        #             users + 1
-        #             if participant.action == GroupCallParticipant.Action.JOINED
-        #             else users - 1
-        #         )
-        #         counter[chat_id] = final
-        #         if final == 1:
-        #             autoend[chat_id] = datetime.now() + timedelta(minutes=AUTO_END_TIME)
-        #             return
-        #         autoend[chat_id] = {}
-
 
 Alexa = Call()
