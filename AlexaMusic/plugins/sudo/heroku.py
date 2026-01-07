@@ -190,7 +190,7 @@ async def usage_dynos(client, message, _):
     path = f"/accounts/{account_id}/actions/get-quota"
     r = requests.get(f"https://api.heroku.com{path}", headers=headers)
     if r.status_code != 200:
-        return await dyno.edit("Unable to fetch.")
+        return await dyno.edit("تـعـذر جـلـب الـبـيـانـات.")
     result = r.json()
     quota = result["account_quota"]
     quota_used = result["quota_used"]
@@ -212,13 +212,13 @@ async def usage_dynos(client, message, _):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     text = f"""
-**ʜᴇʀᴏᴋᴜ ᴅʏɴᴏs ᴜsᴀɢᴇ**
+**اسـتـهـلاك ديـنـو هـيـروكـو**
 
-<u>ᴜsᴀɢᴇ:</u>
-ᴛᴏᴛᴀʟ ᴜsᴇᴅ: `{AppHours}`**ʜ**  `{AppMinutes}`**ᴍ**  [`{AppPercentage}`**%**]
+<u>الاسـتـهـلاك :</u>
+الـمـسـتـخـدم : `{AppHours}`**س**  `{AppMinutes}`**د**  [`{AppPercentage}`**%**]
 
-<u>ʀᴇᴍᴀɪɴɪɴɢ ᴅʏɴᴏs:</u>
-ᴛᴏᴛᴀʟ ʟᴇғᴛ: `{hours}`**ʜ**  `{minutes}`**ᴍ**  [`{percentage}`**%**]"""
+<u>الـديـنـو الـمـتـبـقـي :</u>
+الـمـتـبـقـي : `{hours}`**س**  `{minutes}`**د**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
 
 
@@ -242,7 +242,7 @@ async def update_(client, message, _):
     for checks in repo.iter_commits(f"HEAD..origin/{config.UPSTREAM_BRANCH}"):
         verification = str(checks.count())
     if verification == "":
-        return await response.edit("ʙᴏᴛ ɪs ᴜᴩ-ᴛᴏ-ᴅᴀᴛᴇ ᴡɪᴛʜ ᴜᴩsᴛʀᴇᴀᴍ ʀᴇᴩᴏ !")
+        return await response.edit("الـبـوت مـحـدث بـالـفـعـل عـلـى آخـر إصـدار !")
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
@@ -250,12 +250,12 @@ async def update_(client, message, _):
     )
     for info in repo.iter_commits(f"HEAD..origin/{config.UPSTREAM_BRANCH}"):
         updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ ᴄᴏᴍᴍɪᴛᴇᴅ ᴏɴ:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
-    _update_response_ = "<b>ᴀ ɴᴇᴡ ᴜᴩᴅᴀᴛᴇ ɪs ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛʜᴇ ʙᴏᴛ !</b>\n\n➣ ᴩᴜsʜɪɴɢ ᴜᴩᴅᴀᴛᴇs ɴᴏᴡ</code>\n\n**<u>ᴜᴩᴅᴀᴛᴇs:</u>**\n\n"
+    _update_response_ = "<b>هـنـاك تـحـديـث جـديـد مـتـوفـر !</b>\n\n➣ جـاري رفـع الـتـحـديـثـات الآن\n\n**<u>الـتـحـديـثـات :</u>**\n\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
         url = await Alexabin(updates)
         nrs = await response.edit(
-            f"<b>ᴀ ɴᴇᴡ ᴜᴩᴅᴀᴛᴇ ɪs ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛʜᴇ ʙᴏᴛ !</b>\n\n➣ ᴩᴜsʜɪɴɢ ᴜᴩᴅᴀᴛᴇs ɴᴏᴡ</code>\n\n**<u>ᴜᴩᴅᴀᴛᴇs:</u>**\n\n[ᴄʜᴇᴄᴋ ᴜᴩᴅᴀᴛᴇs]({url})"
+            f"<b>هـنـاك تـحـديـث جـديـد مـتـوفـر !</b>\n\n➣ جـاري رفـع الـتـحـديـثـات الآن\n\n**<u>الـتـحـديـثـات :</u>**\n\n[تـحـقـق مـن الـتـحـديـثـات]({url})"
         )
     else:
         nrs = await response.edit(_final_updates_, disable_web_page_preview=True)
@@ -267,14 +267,14 @@ async def update_(client, message, _):
                 try:
                     await app.send_message(
                         x,
-                        f"{config.MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                        f"تـم إعـادة تـشـغـيـل الـبـوت مـن أجـل الـتـحـديـث . عـذراً لـلإزعـاج .\n\nيـمـكـنـك الـتـشـغـيـل مـرة أخـرى بـعـد 15-20 ثـانـيـة .",
                     )
                     await remove_active_chat(x)
                     await remove_active_video_chat(x)
                 except Exception:
                     pass
             await response.edit(
-                f"{nrs.text}\n\nʙᴏᴛ ᴜᴩᴅᴀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ! ɴᴏᴡ ᴡᴀɪᴛ ғᴏʀ ғᴇᴡ ᴍɪɴᴜᴛᴇs ᴜɴᴛɪʟ ᴛʜᴇ ʙᴏᴛ ʀᴇsᴛᴀʀᴛs ᴀɴᴅ ᴩᴜsʜ ᴄʜᴀɴɢᴇs !"
+                f"{nrs.text}\n\nتـم تـحـديـث الـبـوت بـنـجـاح ! انـتـظـر بـضـع دقـائـق حـتـى يـعـيـد الـتـشـغـيـل !"
             )
             os.system(
                 f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
@@ -282,7 +282,7 @@ async def update_(client, message, _):
             return
         except Exception as err:
             await response.edit(
-                f"{nrs.text}\n\nsᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ ᴡʜᴇɴ ᴛʀɪᴇᴅ ᴛᴏ ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴍᴜsɪᴄ ʙᴏᴛ, ᴩʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʟᴏɢs ᴛᴏ ᴋɴᴏᴡ ᴡʜᴀᴛ's ᴡʀᴏɴɢ."
+                f"{nrs.text}\n\nحـدث خـطـأ أثـنـاء مـحـاولـة إعـادة تـشـغـيـل الـبـوت ، يـرجـى مـراجـعـة الـسـجـلات ."
             )
             return await app.send_message(
                 config.LOG_GROUP_ID,
@@ -294,14 +294,14 @@ async def update_(client, message, _):
             try:
                 await app.send_message(
                     x,
-                    f"{config.MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                    f"تـم إعـادة تـشـغـيـل الـبـوت مـن أجـل الـتـحـديـث . عـذراً لـلإزعـاج .\n\nيـمـكـنـك الـتـشـغـيـل مـرة أخـرى بـعـد 15-20 ثـانـيـة .",
                 )
                 await remove_active_chat(x)
                 await remove_active_video_chat(x)
             except Exception:
                 pass
         await response.edit(
-            f"{nrs.text}\n\nʙᴏᴛ ᴜᴩᴅᴀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ! ɴᴏᴡ ᴡᴀɪᴛ ғᴏʀ ғᴇᴡ ᴍɪɴᴜᴛᴇs ᴜɴᴛɪʟ ᴛʜᴇ ʙᴏᴛ ʀᴇsᴛᴀʀᴛs ᴀɴᴅ ᴩᴜsʜ ᴄʜᴀɴɢᴇs !"
+            f"{nrs.text}\n\nتـم تـحـديـث الـبـوت بـنـجـاح ! انـتـظـر بـضـع دقـائـق حـتـى يـعـيـد الـتـشـغـيـل !"
         )
         os.system("pip3 install -r requirements.txt")
         os.system(f"kill -9 {os.getpid()} && bash start")
@@ -310,13 +310,13 @@ async def update_(client, message, _):
 
 @app.on_message(filters.command(REBOOT_COMMAND) & SUDOERS)
 async def restart_(_, message):
-    response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
+    response = await message.reply_text("جـاري إعـادة الـتـشـغـيـل ...")
     served_chats = await get_active_chats()
     for x in served_chats:
         try:
             await app.send_message(
                 x,
-                f"{config.MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                f"تـم إعـادة تـشـغـيـل الـبـوت مـن أجـل الـتـحـديـث . عـذراً لـلإزعـاج .\n\nيـمـكـنـك الـتـشـغـيـل مـرة أخـرى بـعـد 15-20 ثـانـيـة .",
             )
             await remove_active_chat(x)
             await remove_active_video_chat(x)
@@ -332,6 +332,6 @@ async def restart_(_, message):
     except Exception:
         pass
     await response.edit(
-        "ʀᴇsᴛᴀʀᴛ ᴩʀᴏᴄᴇss sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ, ᴡᴀɪᴛ ғᴏʀ ғᴇᴡ ᴍɪɴᴜᴛᴇs ᴜɴᴛɪʟ ᴛʜᴇ ʙᴏᴛ ʀᴇsᴛᴀʀᴛs."
+        "بـدأت عـمـلـيـة إعـادة الـتـشـغـيـل بـنـجـاح ، انـتـظـر قـلـيـلاً حـتـى يـعـمـل الـبـوت مـرة أخـرى ."
     )
     os.system(f"kill -9 {os.getpid()} && bash start")
