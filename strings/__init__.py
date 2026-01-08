@@ -36,21 +36,24 @@ for filename in os.listdir(r"./strings"):
 
 
 for filename in os.listdir(r"./strings/langs/"):
-    if "en" not in languages:
-        languages["en"] = yaml.safe_load(
-            open(r"./strings/langs/en.yml", encoding="utf8")
+    # هنا تم تغيير الاعتماد من en إلى ar
+    if "ar" not in languages:
+        languages["ar"] = yaml.safe_load(
+            open(r"./strings/langs/ar.yml", encoding="utf8")
         )
-        languages_present["en"] = languages["en"]["name"]
+        languages_present["ar"] = languages["ar"]["name"]
+    
     if filename.endswith(".yml"):
         language_name = filename[:-4]
-        if language_name == "en":
+        if language_name == "ar":
             continue
         languages[language_name] = yaml.safe_load(
             open(f"./strings/langs/{filename}", encoding="utf8")
         )
-        for item in languages["en"]:
+        # ملء النصوص المفقودة من اللغة العربية
+        for item in languages["ar"]:
             if item not in languages[language_name]:
-                languages[language_name][item] = languages["en"][item]
+                languages[language_name][item] = languages["ar"][item]
     try:
         languages_present[language_name] = languages[language_name]["name"]
     except Exception:
