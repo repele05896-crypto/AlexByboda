@@ -1,321 +1,95 @@
-command:
-  PING_COMMAND:
-    - ping
-    - بنج
+# Bot Commands
+PING_COMMAND: ["ping", "بنج"]
+START_COMMAND: ["start", "بداية", "تشغيل", "بوت", "يا بوت"]
+HELP_COMMAND: ["help", "مساعدة", "اوامر", "الأوامر"]
+SETTINGS_COMMAND: ["settings", "setting", "الاعدادات"]
+RELOAD_COMMAND: ["admincache", "reload", "تحديث الادمن", "ريلود"]
+GSTATS_COMMAND: ["gstats", "احصائيات عامة"]
+STATS_COMMAND: ["stats", "الاحصائيات", "الوضع", "سورس", "السورس", "المطور", "مطور", "تست"]
+LANGUAGE_COMMAND: ["lang", "language", "langs", "اللغة", "لغة"]
 
-  START_COMMAND:
-    - start
-    - بداية
-    - تشغيل
+# Play Commands
+PLAY_COMMAND: ["play", "fuck", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce", "شغل", "تشغيل", "سمعني"]
+PLAYMODE_COMMAND: ["playmode", "وضع التشغيل"]
+CHANNELPLAY_COMMAND: ["channelplay", "تشغيل بالقناة", "ربط القناة"]
+STREAM_COMMAND: ["stream", "cstream", "streamforce", "بث"]
 
-  HELP_COMMAND:
-    - help
-    - مساعدة
-    - اوامر
+# Playlists Command
+PLAYLIST_COMMAND: ["playlist", "قائمتي", "القائمة"]
+DELETEPLAYLIST_COMMAND: ["deleteplaylist", "حذف القائمة"]
 
-  SETTINGS_COMMAND:
-    - settings
-    - setting
-    - الاعدادات
+# Tools
+QUEUE_COMMAND: ["queue", "cqueue", "player", "cplayer", "playing", "cplaying", "الدور", "القائمة", "مشغل"]
+SONG_COMMAND: ["song", "video", "vsong", "يوتيوب", "بحث", "تحميل"]
+LYRICS_COMMAND: ["lyrics", "كلمات"]
 
-  RELOAD_COMMAND:
-    - admincache
-    - reload
-    - تحديث الادمن
-    - ريلود
+# Admin Commands
+AUTH_COMMAND: ["auth", "رفع ادمن"]
+UNAUTH_COMMAND: ["unauth", "تنزيل ادمن"]
+AUTHUSERS_COMMAND: ["authusers", "الادمنية"]
+PAUSE_COMMAND: ["pause", "cpause", "مؤقت", "إيقاف مؤقت"]
+RESUME_COMMAND: ["resume", "cresume", "استكمال", "متابعة"]
+MUTE_COMMAND: ["mute", "cmute", "كتم", "اسكت"]
+UNMUTE_COMMAND: ["unmute", "cunmute", "الغاء الكتم", "تكلم"]
+STOP_COMMAND: ["stop", "end", "cstop", "cend", "ايقاف", "انهاء", "اسكت"]
+SKIP_COMMAND: ["skip", "cskip", "تخطي", "التالي", "ال بعده"]
+SHUFFLE_COMMAND: ["shuffle", "cshuffle", "خلط"]
+LOOP_COMMAND: ["loop", "cloop", "تكرار"]
+SEEK_COMMAND: ["seek", "cseek", "seekback", "cseekback", "قدم", "رجع"]
+RESTART_COMMAND: ["reboot", "تحديث البوت", "اعادة تشغيل"]
 
-  GSTATS_COMMAND:
-    - gstats
-    - احصائيات عامة
+# Sudo Users Commands
+ADDSUDO_COMMAND: ["addsudo", "رفع مطور"]
+DELSUDO_COMMAND: ["delsudo", "rmsudo", "تنزيل مطور"]
+SUDOUSERS_COMMAND: ["sudolist", "listsudo", "المطورين"]
 
-  STATS_COMMAND:
-    - stats
-    - الاحصائيات
+# Broadcast 
+BROADCAST_COMMAND: ["broadcast", "gcast", "اذاعة"]
 
-  LANGUAGE_COMMAND:
-    - lang
-    - language
-    - langs
-    - اللغة
-    - لغة
+# Blacklist chat
+BLACKLISTCHAT_COMMAND: ["blacklistchat", "blchat", "حظر مجموعة"]
+WHITELISTCHAT_COMMAND: ["whitelistchat", "unblchat", "رفع حظر مجموعة"]
+BLACKLISTEDCHAT_COMMAND: ["blacklistedchat", "المجموعات المحظورة"]
 
-  PLAY_COMMAND:
-    - play
-    - fuck
-    - vplay
-    - cplay
-    - cvplay
-    - playforce
-    - vplayforce
-    - cplayforce
-    - cvplayforce
-    - شغل
-    - تشغيل
-    - سمعني
+# Video Calls Command
+VIDEOLIMIT_COMMAND: ["set_video_limit", "حد الفيديو"]
+VIDEOMODE_COMMAND: ["videomode", "وضع الفيديو"]
 
-  PLAYMODE_COMMAND:
-    - playmode
-    - وضع التشغيل
+# Maintenance
+MAINTENANCE_COMMAND: ["maintenance", "الصيانة"]
+LOGGER_COMMAND: ["logger", "سجلات", "السجل"]
 
-  CHANNELPLAY_COMMAND:
-    - channelplay
-    - تشغيل بالقناة
-    - ربط القناة
+# Heroku
+GETLOG_COMMAND: ["get_log", "logs", "getlog", "log", "السجلات"]
+GETVAR_COMMAND: ["get_var", "getvar", "showvar", "جلب متغير"]
+DELVAR_COMMAND: ["del_var", "delvar", "حذف متغير"]
+SETVAR_COMMAND: ["set_var", "setvar", "addvar", "تعيين متغير"]
+USAGE_COMMAND: ["usage", "استهلاك"]
+VARS_COMMAND: ["vars", "config", "المتغيرات"]
 
-  STREAM_COMMAND:
-    - stream
-    - cstream
-    - streamforce
-    - بث
+# Basic Bot Commands
+UPDATE_COMMAND: ["update", "تحديث"]
+REBOOT_COMMAND: ["restart", "ريستارت"]
+AUTOEND_COMMAND: ["autoend", "انهاء تلقائي"]
 
-  PLAYLIST_COMMAND:
-    - playlist
-    - قائمتي
-    - القائمة
+# Private Bot Mode
+AUTHORIZE_COMMAND: ["authorize", "سماح"]
+UNAUTHORIZE_COMMAND: ["unauthorize", "منع"]
+AUTHORIZED_COMMAND: ["authorized", "المسموح لهم"]
 
-  DELETEPLAYLIST_COMMAND:
-    - deleteplaylist
-    - حذف القائمة
+# Block Users Command
+BLOCK_COMMAND: ["block", "بلوك", "حظر"]
+UNBLOCK_COMMAND: ["unblock", "الغاء بلوك", "الغاء حظر"]
+BLOCKED_COMMAND: ["blockedusers", "المحظورين"]
 
-  QUEUE_COMMAND:
-    - queue
-    - cqueue
-    - player
-    - cplayer
-    - playing
-    - cplaying
-    - الدور
-    - القائمة
-    - مشغل
+# Speedtest
+SPEEDTEST_COMMAND: ["speedtest", "سرعة السيرفر"]
 
-  SONG_COMMAND:
-    - song
-    - video
-    - vsong
-    - يوتيوب
-    - بحث
-    - تحميل
+# Voice chat commands
+ACTIVEVC_COMMAND: ["activevoice", "activevc", "المكالمات النشطة"]
+ACTIVEVIDEO_COMMAND: ["activevideo", "activev", "الفيديو النشط"]
 
-  LYRICS_COMMAND:
-    - lyrics
-    - كلمات
-
-  AUTH_COMMAND:
-    - auth
-    - رفع ادمن
-
-  UNAUTH_COMMAND:
-    - unauth
-    - تنزيل ادمن
-
-  AUTHUSERS_COMMAND:
-    - authusers
-    - الادمنية
-
-  PAUSE_COMMAND:
-    - pause
-    - cpause
-    - مؤقت
-    - إيقاف مؤقت
-
-  RESUME_COMMAND:
-    - resume
-    - cresume
-    - استكمال
-    - متابعة
-
-  MUTE_COMMAND:
-    - mute
-    - cmute
-    - كتم
-    - اسكت
-
-  UNMUTE_COMMAND:
-    - unmute
-    - cunmute
-    - الغاء الكتم
-    - تكلم
-
-  STOP_COMMAND:
-    - stop
-    - end
-    - cstop
-    - cend
-    - ايقاف
-    - انهاء
-    - اسكت
-
-  SKIP_COMMAND:
-    - skip
-    - cskip
-    - تخطي
-    - التالي
-    - ال بعده
-
-  SHUFFLE_COMMAND:
-    - shuffle
-    - cshuffle
-    - خلط
-
-  LOOP_COMMAND:
-    - loop
-    - cloop
-    - تكرار
-
-  SEEK_COMMAND:
-    - seek
-    - cseek
-    - seekback
-    - cseekback
-    - قدم
-    - رجع
-
-  RESTART_COMMAND:
-    - reboot
-    - تحديث البوت
-
-  ADDSUDO_COMMAND:
-    - addsudo
-    - رفع مطور
-
-  DELSUDO_COMMAND:
-    - delsudo
-    - rmsudo
-    - تنزيل مطور
-
-  SUDOUSERS_COMMAND:
-    - sudolist
-    - listsudo
-    - المطورين
-
-  BROADCAST_COMMAND:
-    - broadcast
-    - gcast
-    - اذاعة
-
-  BLACKLISTCHAT_COMMAND:
-    - blacklistchat
-    - blchat
-    - حظر مجموعة
-
-  WHITELISTCHAT_COMMAND:
-    - whitelistchat
-    - unblchat
-    - رفع حظر مجموعة
-
-  BLACKLISTEDCHAT_COMMAND:
-    - blacklistedchat
-    - المجموعات المحظورة
-
-  VIDEOLIMIT_COMMAND:
-    - set_video_limit
-    - حد الفيديو
-
-  VIDEOMODE_COMMAND:
-    - videomode
-    - وضع الفيديو
-
-  MAINTENANCE_COMMAND:
-    - maintenance
-    - الصيانة
-
-  LOGGER_COMMAND:
-    - logger
-    - سجلات
-
-  GETLOG_COMMAND:
-    - get_log
-    - logs
-    - getlog
-    - log
-    - السجلات
-
-  GETVAR_COMMAND:
-    - get_var
-    - getvar
-    - showvar
-    - جلب متغير
-
-  DELVAR_COMMAND:
-    - del_var
-    - delvar
-    - حذف متغير
-
-  SETVAR_COMMAND:
-    - set_var
-    - setvar
-    - addvar
-    - تعيين متغير
-
-  USAGE_COMMAND:
-    - usage
-    - استهلاك
-
-  VARS_COMMAND:
-    - vars
-    - config
-    - المتغيرات
-
-  UPDATE_COMMAND:
-    - update
-    - تحديث
-
-  REBOOT_COMMAND:
-    - restart
-    - اعادة تشغيل
-
-  AUTOEND_COMMAND:
-    - autoend
-    - انهاء تلقائي
-
-  AUTHORIZE_COMMAND:
-    - authorize
-    - سماح
-
-  UNAUTHORIZE_COMMAND:
-    - unauthorize
-    - منع
-
-  AUTHORIZED_COMMAND:
-    - authorized
-    - المسموح لهم
-
-  BLOCK_COMMAND:
-    - block
-    - بلوك
-    - حظر
-
-  UNBLOCK_COMMAND:
-    - unblock
-    - الغاء بلوك
-    - الغاء حظر
-
-  BLOCKED_COMMAND:
-    - blockedusers
-    - المحظورين
-
-  SPEEDTEST_COMMAND:
-    - speedtest
-    - سرعة السيرفر
-
-  ACTIVEVC_COMMAND:
-    - activevoice
-    - activevc
-    - المكالمات النشطة
-
-  ACTIVEVIDEO_COMMAND:
-    - activevideo
-    - activev
-    - الفيديو النشط
-
-  GBAN_COMMAND:
-    - gban
-    - حظر عام
-
-  UNGBAN_COMMAND:
-    - ungban
-    - الغاء حظر عام
-
-  GBANNED_COMMAND:
-    - gbannedusers
-    - المحظورين عام
+# Gban Commands
+GBAN_COMMAND: ["gban", "حظر عام"]
+UNGBAN_COMMAND: ["ungban", "الغاء حظر عام"]
+GBANNED_COMMAND: ["gbannedusers", "المحظورين عام"]
