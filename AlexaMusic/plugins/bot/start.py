@@ -1,19 +1,8 @@
 # Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
 # Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
 
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import asyncio
-
-from pyrogram import filters
-from pyrogram import enums, filters
+from pyrogram import filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
 
@@ -42,11 +31,14 @@ from AlexaMusic.utils.command import commandpro
 
 loop = asyncio.get_running_loop()
 
+# هذه القائمة تضمن عمل البوت بـ / أو بدونها
+# العلامة "" (فراغ) هي التي تجعله يعمل بدون بادئة
+ALL_PREFIXES = ["/", "!", "", ".", "@", "#"]
 
 @app.on_message(
     (
-        filters.command(get_command("START_COMMAND"))
-        | filters.regex(r"^(بوت|يا بوت|تشغيل)$")
+        filters.command(get_command("START_COMMAND"), prefixes=ALL_PREFIXES)
+        | filters.regex(r"^(بوت|يا بوت)$")
     )
     & filters.private
     & ~BANNED_USERS
@@ -219,7 +211,7 @@ async def start_comm(client, message: Message, _):
 
 @app.on_message(
     (
-        filters.command(get_command("START_COMMAND"))
+        filters.command(get_command("START_COMMAND"), prefixes=ALL_PREFIXES)
         | filters.regex(r"^(بوت|يا بوت)$")
     )
     & filters.group
@@ -289,7 +281,7 @@ async def welcome(client, message: Message):
 
 @app.on_message(
     (
-        commandpro(["/alive", "Alexa"])
+        filters.command(["alive", "Alexa", "الوضع", "سورس", "السورس", "المطور", "مطور"], prefixes=ALL_PREFIXES)
         | filters.regex(r"^(سورس|السورس|المطور|مطور|تست|الوضع)$")
     )
     & ~BANNED_USERS
@@ -306,7 +298,7 @@ async def alive(client, message: Message):
 
 @app.on_message(
     (
-        commandpro(["/verify", "alexaverification"])
+        filters.command(["verify", "alexaverification", "توثيق", "وثقني"], prefixes=ALL_PREFIXES)
         | filters.regex(r"^(توثيق|وثقني)$")
     )
     & ~BANNED_USERS
