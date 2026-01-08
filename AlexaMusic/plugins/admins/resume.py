@@ -24,7 +24,12 @@ from AlexaMusic.utils.decorators import AdminRightsCheck
 RESUME_COMMAND = get_command("RESUME_COMMAND")
 
 
-@app.on_message(filters.command(RESUME_COMMAND) & filters.group & ~BANNED_USERS)
+# التعديل هنا: ضفنا prefixes عشان يقبل الأمر كنص عادي
+@app.on_message(
+    filters.command(RESUME_COMMAND, prefixes=["/", "!", "", "."])
+    & filters.group
+    & ~BANNED_USERS
+)
 @AdminRightsCheck
 async def resume_com(cli, message: Message, _, chat_id):
     if len(message.command) != 1:
