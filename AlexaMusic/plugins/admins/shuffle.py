@@ -25,7 +25,12 @@ from AlexaMusic.utils.decorators import AdminRightsCheck
 SHUFFLE_COMMAND = get_command("SHUFFLE_COMMAND")
 
 
-@app.on_message(filters.command(SHUFFLE_COMMAND) & filters.group & ~BANNED_USERS)
+# التعديل هنا: ضفنا prefixes عشان يقبل الأمر بدون علامات
+@app.on_message(
+    filters.command(SHUFFLE_COMMAND, prefixes=["/", "!", "", "."])
+    & filters.group
+    & ~BANNED_USERS
+)
 @AdminRightsCheck
 async def admins(Client, message: Message, _, chat_id):
     if len(message.command) != 1:
