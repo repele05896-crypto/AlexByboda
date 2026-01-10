@@ -12,17 +12,17 @@ async def smart_language_check(chat_id):
         
         # الحالة 1: مستخدم جديد ليس له لغة -> نعطيه العربية
         if not lang:
-            return "ar"
+            return "en"
             
         # الحالة 2: مستخدم لغته "en" (وهي الافتراضية القديمة التي نريد تغييرها) -> نحولها عربية
         # ملاحظة: إذا كنت تريد السماح بالإنجليزية لمن يختارها يدوياً، احذف السطرين التاليين
         if lang == "en":
-            return "ar"
+            return "en"
             
         # الحالة 3: أي لغة أخرى محفوظة (غير الإنجليزية والفراغ) -> نتركها كما هي
         return lang
     except:
-        return "ar"
+        return "en"
 
 def language(mystic):
     async def wrapper(_, message, **kwargs):
